@@ -80,5 +80,5 @@ make
 
 # Developers
 
-[Cookies](/dev/readme.md)
+[Developer Notes](/dev/readme.md)
 
