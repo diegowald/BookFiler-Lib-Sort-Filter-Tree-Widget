@@ -1,1 +1,3 @@
-QSortFilterProxyModel
+I need a QT5 widget written in C++. The Libraries used are QT, Boost, and sqlite3. I need a custom `QTreeView` written that is able to be sorted, filtered, and edited using sqlite3 as the backend. To Sort and filter you need to use SQL queries to reorder the data. You may use `QSortFilterProxyModel`. The compiler I use is GCC. You may use MinGW on windows or GCC on linux to build. I don't compile with visual studio.
+
+The `QTreeView` columns must be dynamically created to be the same as the `sqlite3` table passed to the widget. You must use an SQL query to detect the columns in the table and dynamically created a view for it. `sqlite3` table must have the columns `guid` and `guid_parent` (the name can be different) so that the tree view children can be built off this.
