@@ -31,7 +31,13 @@ This widget will work with any sqlite3 table as long as there is a `guid` and `p
 
 columns: guid, parent_guid
 
+![Style 1](https://github.com/bradosia/BookFiler-Lib-Sort-Filter-Tree-Widget/blob/main/dev/tree-view-design-1.png?raw=true)
 
+### Style 1
+
+columns: guid, parent_guid
+
+![Style 1](https://github.com/bradosia/BookFiler-Lib-Sort-Filter-Tree-Widget/blob/main/dev/tree-view-design-2.png?raw=true)
 
 # Build Instructions
 
