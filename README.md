@@ -79,3 +79,6 @@ make
 ```
 
 # Developers
+
+[Cookies](/dev/readme.md)
+
