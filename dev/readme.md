@@ -4,6 +4,8 @@ I need a QT5 widget written in C++ for a desktop application. The Libraries used
 
 I already wrote the header file for how each method on the derived `QTreeView` should be used [/src/UI/MainWidget.hpp](https://github.com/bradosia/BookFiler-Lib-Sort-Filter-Tree-Widget/blob/main/src/UI/MainWidget.hpp). You must finish implementing the widget using the source files provided in this repository. The example program is used to test the widget. [/src_example/example00/main.cpp](https://github.com/bradosia/BookFiler-Lib-Sort-Filter-Tree-Widget/blob/main/src_example/example00/main.cpp).
 
+To begin development, you should fork this repository and begin implementing the source files [/src/](https://github.com/bradosia/BookFiler-Lib-Sort-Filter-Tree-Widget/tree/main/src). Make a pull request or zip up your forked repository and send it to me when delivering work.
+
 ## Compiler and compatability
 
 Program must compile on Windows and Linux. For Windows, use MinGW for compiling. For Linux use GCC. Use cmake as the build scipt. Personally, the IDE I use is QT Creator, but any should work as long as you can build with cmake.
