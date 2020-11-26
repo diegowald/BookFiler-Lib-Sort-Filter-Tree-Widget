@@ -1,4 +1,6 @@
-I need a QT5 widget written in C++. The Libraries used are QT, Boost, and sqlite3. I need a custom `QTreeView` written that is able to be sorted, filtered, and edited using sqlite3 as the backend. To Sort and filter you need to use SQL queries to reorder the data. You may use `QSortFilterProxyModel` to help with sorting and filtering. 
+# Development Summary
+
+I need a QT5 widget written in C++. The Libraries used are QT, Boost, and sqlite3. I need a custom `QTreeView` written that is able to be sorted, filtered, and edited using sqlite3 as the backend. To Sort and filter you need to use SQL queries to reorder the data.
 
 I already started on the code. See the header I started for how to use each method of the widget [/src/UI/MainWidget.hpp](https://github.com/bradosia/BookFiler-Lib-Sort-Filter-Tree-Widget/blob/main/src/UI/MainWidget.hpp).
 
@@ -22,10 +24,18 @@ The `QTreeView` columns must be dynamically created to be the same as the `sqlit
 
 ![Style 2](https://github.com/bradosia/BookFiler-Lib-Sort-Filter-Tree-Widget/blob/main/dev/tree-view-design-2.png?raw=true)
 
+## Sorting and Filtering Implementation
+
+You may use `QSortFilterProxyModel` to help with sorting and filtering. 
+
 ## Coding Standards
 Always use the standard library when possible. Use `std::shared_ptr` and `std::unique_ptr` instead of raw pointers whenever possible. use `boost` if some method does not exist in standard library. Finally use `QT5` as the last option.
 
 Separate all graphical GUI code into the `/src/UI/` directory. Anything with `QT` should be in the `/src/UI/` directory. All logic and non-GUI code goes into the `/src/core/` directory.
+
+* Use camel case
+* Use C++17 best coding practices
+* Use the standard library when possible
 
 ## Deliverables
 
