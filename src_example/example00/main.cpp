@@ -86,7 +86,7 @@ int main(int argc, char *argv[]) {
   /* Randomly generate an SQL statement to generate a tree with randomly
    * generated children, names, and values
    */
-  for (int i = 0; i < 1000; i++) {
+  for (int i = 0; i < 10000; i++) {
     std::string parentGuid = guidList[rand() % (guidList.size() - 1)];
     std::string newGuid = gen_random(32);
     insertSql.append("INSERT INTO testTable (guid,parent_guid,name,value) "
