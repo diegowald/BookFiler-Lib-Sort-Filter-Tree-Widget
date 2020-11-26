@@ -8,7 +8,7 @@ Program must compile on Windows and Linux. For Windows, use MinGW for compiling.
 
 ## `QTreeView` column dynamic sizing
 
-The `QTreeView` columns must be dynamically created to be the same as the `sqlite3` table passed to the widget. You must use an SQL query to detect the columns in the table and dynamically created a view for it. `sqlite3` table must have the columns `guid` and `guid_parent` (the name of the column can be different, the columns must have the same purpose) so that the tree view children can be built off this. Here is an example of how the `QTreeView` will by dynamically created by the `sqlite3` table:
+The `QTreeView` columns must be dynamically created to be the same as the `sqlite3` table passed to the widget. You must use an SQL query to detect the columns in the table and dynamically create a view for it. `sqlite3` table must have the columns `guid` and `guid_parent` (the name of the column can be different, the columns must have the same purpose) so that the tree view children can be built off this. Here is an example of how the `QTreeView` will by dynamically created by the `sqlite3` table:
 
 ### Example 1
 
@@ -21,6 +21,11 @@ The `QTreeView` columns must be dynamically created to be the same as the `sqlit
 `sqlite3` table columns: guid, parent_guid, Name. Hidden columns: guid, parent_guid.
 
 ![Style 2](https://github.com/bradosia/BookFiler-Lib-Sort-Filter-Tree-Widget/blob/main/dev/tree-view-design-2.png?raw=true)
+
+## Coding Standards
+Always use the standard library when possible. Use `std::shared_ptr` and `std::unique_ptr` instead of raw pointers whenever possible. use `boost` if some method does not exist in standard library. Finally use `QT5` as the last option.
+
+Separate all graphical GUI code into the `/src/UI/` directory. Anything with `QT` should be in the `/src/UI/` directory. All logic and non-GUI code goes into the `/src/core/` directory.
 
 ## Deliverables
 
