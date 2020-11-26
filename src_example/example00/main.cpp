@@ -29,12 +29,11 @@
 #include <BookFiler-Lib-Sort-Filter-Tree-Widget/Interface.hpp>
 
 std::string gen_random(const int len);
+int populateDatabase(std::shared_ptr<sqlite3> database);
 
 std::string testName = "Sort Filter Tree Widget Example";
 
 int main(int argc, char *argv[]) {
-  char *zErrMsg = 0;
-
   std::cout << testName << " BEGIN" << std::endl;
 
   // Create a QT application
@@ -55,6 +54,40 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
+  std::shared_ptr<sqlite3> database(nullptr);
+  database.reset(dbPtr, sqlite3_close);
+
+  rc = populateDatabase(database);
+  if (rc < 0) {
+    std::cout << "error" << std::endl;
+    return rc;
+  }
+
+  treeWidget->setData(database, "testTable", "guid", "parent_guid");
+  treeWidget->setRoot("*");
+  treeWidget->update();
+
+  // Start the application loop
+  qtApp.exec();
+
+  std::cout << testName << " END" << std::endl;
+  return 0;
+}
+
+std::string gen_random(const int len) {
+  std::string tmp_s;
+  static const char alphanum[] = "0123456789"
+                                 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                 "abcdefghijklmnopqrstuvwxyz";
+  tmp_s.reserve(len);
+  for (int i = 0; i < len; ++i)
+    tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
+  return tmp_s;
+}
+
+int populateDatabase(std::shared_ptr<sqlite3> database) {
+  char *zErrMsg = 0;
+  int rc = 0;
   /* CREATE TABLE - Create SQL statement */
   const char *creatTableSql = "CREATE TABLE testTable(guid text(32) PRIMARY "
                               "KEY NOT NULL, parent_guid text(32), name "
@@ -62,7 +95,7 @@ int main(int argc, char *argv[]) {
 
   /* Execute SQL statement */
   rc = sqlite3_exec(
-      dbPtr, creatTableSql,
+      database.get(), creatTableSql,
       [](void *NotUsed, int argc, char **argv, char **azColName) -> int {
         int i;
         for (i = 0; i < argc; i++) {
@@ -110,7 +143,7 @@ int main(int argc, char *argv[]) {
 
   /* Execute SQL statement */
   rc = sqlite3_exec(
-      dbPtr, insertSql.c_str(),
+      database.get(), insertSql.c_str(),
       [](void *NotUsed, int argc, char **argv, char **azColName) -> int {
         int i;
         for (i = 0; i < argc; i++) {
@@ -126,27 +159,5 @@ int main(int argc, char *argv[]) {
     sqlite3_free(zErrMsg);
     return -2;
   }
-
-  std::shared_ptr<sqlite3> database(nullptr);
-  database.reset(dbPtr, sqlite3_close);
-  treeWidget->setData(database, "testTable", "guid", "parent_guid");
-  treeWidget->setRoot("*");
-  treeWidget->update();
-
-  // Start the application loop
-  qtApp.exec();
-
-  std::cout << testName << " END" << std::endl;
   return 0;
-}
-
-std::string gen_random(const int len) {
-  std::string tmp_s;
-  static const char alphanum[] = "0123456789"
-                                 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                                 "abcdefghijklmnopqrstuvwxyz";
-  tmp_s.reserve(len);
-  for (int i = 0; i < len; ++i)
-    tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
-  return tmp_s;
 }
